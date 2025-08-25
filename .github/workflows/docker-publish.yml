@@ -12,10 +12,6 @@ on:
       - main
       - master
 
-env:
-  DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-  IMAGE_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}/redis
-
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -41,7 +37,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ${{ env.IMAGE_NAME }}
+        images: ${{ secrets.DOCKER_HUB_USERNAME }}/redis
         tags: |
           type=ref,event=branch
           type=ref,event=pr
@@ -67,5 +63,5 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
-        repository: ${{ env.IMAGE_NAME }}
+        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/redis
         readme-filepath: ./README.md
