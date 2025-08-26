@@ -25,7 +25,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ENV REDIS_PORT_NUMBER=6379 \
     REDIS_DATA_DIR=/data \
     REDIS_CONF_FILE=/config/redis.conf \
-    REDIS_LOG_FILE=/dev/stdout \
+    REDIS_LOG_FILE="" \
     REDIS_DISABLE_COMMANDS="" \
     REDIS_PASSWORD="" \
     REDIS_MASTER_HOST="" \
