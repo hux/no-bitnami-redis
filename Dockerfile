@@ -6,8 +6,9 @@ RUN apt-get update && apt-get install -y \
     gosu \
     && rm -rf /var/lib/apt/lists/*
 
-# Create redis user and group
-RUN groupadd -r -g 1001 redis && useradd -r -g redis -u 1001 redis
+# Create redis user and group (skip if already exists)
+RUN groupadd -r -g 1001 redis 2>/dev/null || true \
+    && useradd -r -g redis -u 1001 redis 2>/dev/null || true
 
 # Create necessary directories
 RUN mkdir -p /data /config \
